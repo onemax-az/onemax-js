@@ -1,0 +1,57 @@
+{
+  "name": "onemax",
+  "version": "0.1.0",
+  "description": "Client library for the OneMax partner API",
+  "license": "MIT",
+  "author": "OneMax",
+  "homepage": "https://github.com/onemax-az/onemax-js#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/onemax-az/onemax-js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/onemax-az/onemax-js/issues"
+  },
+  "keywords": [
+    "onemax",
+    "partner",
+    "api",
+    "client",
+    "pkce"
+  ],
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "CHANGELOG.md"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "clean": "node -e \"require('node:fs').rmSync('dist', { recursive: true, force: true })\"",
+    "build": "npm run clean && tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.0.0",
+    "eslint": "^9.0.0",
+    "prettier": "^3.0.0",
+    "typescript": "~5.9.0",
+    "typescript-eslint": "^8.0.0",
+    "vite": "^6.0.0",
+    "vitest": "^3.0.0"
+  }
+}
