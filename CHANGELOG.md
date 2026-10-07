@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.1
+
+Packaging only, no library changes since 0.1.0. First release published through trusted
+publishing, with no token stored in the repository.
+
 ## 0.1.0
 
 First release.
