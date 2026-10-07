@@ -238,6 +238,13 @@ npm test
 The tests use a fake `fetch` and never touch the network. `npm run format` rewrites files with
 Prettier.
 
+## Releasing
+
+Set the version in `package.json` and `src/version.ts`, add a `## x.y.z` section to `CHANGELOG.md`, commit, then push a tag
+`vx.y.z`. The `Publish` workflow checks that the tag equals the package version, runs the checks,
+publishes to npm and creates the GitHub release from the changelog section. A tag that does not match the
+version publishes nothing.
+
 ## License
 
 MIT. See [LICENSE](LICENSE).
