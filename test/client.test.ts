@@ -74,6 +74,7 @@ describe('context', () => {
       venueName: 'Araz Nizami',
       dailyLimit: 2,
       offers: [{ id: 'offer-1', headline: '1+1', title: 'Kofe', openNow: true }],
+      mode: null,
     })
   })
 })
@@ -91,6 +92,7 @@ describe('verifyCode', () => {
       reason: Reason.Ok,
       usageId: 'usage-1',
       dailyLimit: 2,
+      mode: null,
     })
   })
 
@@ -220,7 +222,7 @@ describe('exchangeCode', () => {
       code_verifier: 'verifier-1',
       redirect_uri: 'https://partner.example/callback',
     })
-    expect(token).toEqual({ linkToken: 'omx_link_abc', active: true })
+    expect(token).toEqual({ linkToken: 'omx_link_abc', active: true, mode: null })
   })
 })
 
@@ -231,7 +233,7 @@ describe('linkStatus', () => {
     expect(server.last().method).toBe('POST')
     expect(server.last().url).toBe(`${BASE}/integration/links/status`)
     expect(jsonBody(server.last())).toEqual({ link_token: 'omx_link_abc' })
-    expect(status).toEqual({ linked: false, active: false })
+    expect(status).toEqual({ linked: false, active: false, mode: null })
   })
 })
 

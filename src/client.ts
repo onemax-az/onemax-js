@@ -2,11 +2,22 @@ import { OneMaxError } from './errors.js'
 import { Transport } from './http.js'
 import type { FetchLike, JsonBody } from './http.js'
 import { toContext, toLinkStatus, toLinkToken, toUsage, toVerification } from './mapping.js'
-import type { Context, LinkStatus, LinkToken, Locale, Usage, Verification } from './models.js'
+import { Mode } from './models.js'
+import type {
+  Context,
+  KnownMode,
+  LinkStatus,
+  LinkToken,
+  Locale,
+  Usage,
+  Verification,
+} from './models.js'
 
 export const DEFAULT_BASE_URL = 'https://api.onemax.az/v1'
 export const DEFAULT_SITE_URL = 'https://onemax.az'
 export const DEFAULT_TIMEOUT_MS = 10_000
+
+const TEST_KEY_PREFIX = 'omx_test_'
 
 const LOCALE_PREFIXES: Record<string, string> = { az: '', ru: '/ru', en: '/en' }
 
@@ -55,11 +66,13 @@ function globalFetch(input: string, init: RequestInit): Promise<Response> {
 export class OneMax {
   readonly #transport: Transport
   readonly #siteUrl: string
+  readonly mode: KnownMode
 
   constructor(options: OneMaxOptions) {
     if (typeof options.apiKey !== 'string' || options.apiKey.trim() === '') {
       throw new OneMaxError('An API key is required')
     }
+    this.mode = options.apiKey.trim().startsWith(TEST_KEY_PREFIX) ? Mode.Test : Mode.Live
     this.#siteUrl = withoutTrailingSlash(options.siteUrl ?? DEFAULT_SITE_URL)
     this.#transport = new Transport({
       apiKey: options.apiKey,

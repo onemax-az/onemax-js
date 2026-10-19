@@ -74,6 +74,7 @@ export function toContext(value: unknown): Context {
     venueName: readString(fields, 'venue_name'),
     dailyLimit: readInteger(fields, 'daily_limit'),
     offers: offers.map(toOffer),
+    mode: readNullableString(fields, 'mode'),
   }
 }
 
@@ -85,6 +86,7 @@ export function toVerification(value: unknown): Verification {
     reason: readString(fields, 'reason'),
     usageId: readNullableString(fields, 'usage_id'),
     dailyLimit: readInteger(fields, 'daily_limit'),
+    mode: readNullableString(fields, 'mode'),
   }
 }
 
@@ -97,6 +99,7 @@ export function toUsage(value: unknown): Usage {
     createdAt: readDate(fields, 'created_at'),
     confirmedAt: readNullableDate(fields, 'confirmed_at'),
     voidedAt: readNullableDate(fields, 'voided_at'),
+    mode: readNullableString(fields, 'mode'),
   }
 }
 
@@ -105,6 +108,7 @@ export function toLinkToken(value: unknown): LinkToken {
   return {
     linkToken: readString(fields, 'link_token'),
     active: readBoolean(fields, 'active'),
+    mode: readNullableString(fields, 'mode'),
   }
 }
 
@@ -113,5 +117,6 @@ export function toLinkStatus(value: unknown): LinkStatus {
   return {
     linked: readBoolean(fields, 'linked'),
     active: readBoolean(fields, 'active'),
+    mode: readNullableString(fields, 'mode'),
   }
 }

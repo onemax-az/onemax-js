@@ -21,6 +21,15 @@ export type KnownUsageStatus = (typeof UsageStatus)[keyof typeof UsageStatus]
 
 export type UsageStatus = KnownUsageStatus | (string & {})
 
+export const Mode = {
+  Live: 'live',
+  Test: 'test',
+} as const
+
+export type KnownMode = (typeof Mode)[keyof typeof Mode]
+
+export type Mode = KnownMode | (string & {})
+
 export const Locale = {
   Az: 'az',
   Ru: 'ru',
@@ -42,6 +51,7 @@ export interface Context {
   venueName: string
   dailyLimit: number
   offers: Offer[]
+  mode: Mode | null
 }
 
 export interface Verification {
@@ -50,6 +60,7 @@ export interface Verification {
   reason: Reason
   usageId: string | null
   dailyLimit: number
+  mode: Mode | null
 }
 
 export interface Usage {
@@ -59,16 +70,19 @@ export interface Usage {
   createdAt: Date
   confirmedAt: Date | null
   voidedAt: Date | null
+  mode: Mode | null
 }
 
 export interface LinkToken {
   linkToken: string
   active: boolean
+  mode: Mode | null
 }
 
 export interface LinkStatus {
   linked: boolean
   active: boolean
+  mode: Mode | null
 }
 
 export interface PkcePair {
