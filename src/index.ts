@@ -20,9 +20,10 @@ export {
 } from './errors.js'
 export type { ApiErrorFields } from './errors.js'
 export type { FetchLike } from './http.js'
-export { Locale, Reason, UsageStatus } from './models.js'
+export { Locale, Mode, Reason, UsageStatus } from './models.js'
 export type {
   Context,
+  KnownMode,
   KnownReason,
   KnownUsageStatus,
   LinkStatus,
